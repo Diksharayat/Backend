@@ -23,7 +23,6 @@ const add_to_cart= async(req,res)=>{
 }
 
 
-
 const get_cart_items = async (req, res) => {
   try {
  

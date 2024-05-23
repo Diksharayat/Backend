@@ -6,9 +6,16 @@ require("./config/dbConnect");
 const app=express();
 
 
+// Middleware
+app.use(bodyParser.json());
+app.get('/', (req, res) => {
+  console.log(req.useragent)
+  res.send('Hey this is my API running 🥳')
+})
+
+
 //middlewares
 app.use(cors())
-app.use(bodyParser.json());
 app.use(express.json())
 //routes
 
