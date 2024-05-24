@@ -85,6 +85,7 @@ const decrement_quantity = async (req, res) => {
 const delete_item = async (req, res) => {
   try {
     const { product_id } = req.body;
+    console.log(product_id,"product_id");
 
     // Find the cart item by its product ID and delete it
     const deletedItem = await Cart.findOneAndDelete({ product_id });
