@@ -1,4 +1,6 @@
 const Cart=require("../models/cartModel");
+const Product = require("../models/products");
+
 
 const add_to_cart= async(req,res)=>{
 
@@ -20,6 +22,12 @@ const add_to_cart= async(req,res)=>{
     res.status(500).json({ success:false,message: error.message });
   }
 
+}
+
+const productsController=async(req,res)=>{
+  const products = await Product.find();
+  res.send(products);
+  
 }
 
 
@@ -108,5 +116,6 @@ module.exports={
   get_cart_items,
   increment_quantity,
   decrement_quantity,
-  delete_item
+  delete_item,
+  productsController
 }
