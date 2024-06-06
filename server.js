@@ -1,42 +1,32 @@
-const express =require('express');
+const express = require('express');
 const cart_route = require('./routes/cartRoute');
-const bodyParser =require("body-parser");
-const cors= require("cors");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 require("./config/dbConnect");
-const app=express();
-
-
-
-const corsOptions ={
-  origin:'https://frontend-pink-eight.vercel.app/', 
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
-
-
-//middlewares
-app.use(cors())
+const app = express();
 
 // Middleware
 app.use(bodyParser.json());
+
+// Set CORS headers
+const corsOptions = {
+  origin: 'https://frontend-pink-eight.vercel.app',
+  credentials: true, // Include cookies in CORS requests
+  optionSuccessStatus: 200 // Respond with 200 for preflight requests
+};
+app.use(cors(corsOptions));
+
+// Define routes
 app.get('/', (req, res) => {
-  console.log(req.useragent)
-  res.send('Hey this is my API running 🥳')
-})
+  console.log(req.useragent);
+  res.send('Hey this is my API running 🥳');
+});
 
+// Use the cart_route middleware
+app.use("/api", cart_route);
 
-app.use(express.json())
-//routes
+// Error handlers
 
-app.use("/api",cart_route);
-
-//cart route
-
-
-//Error handlers
-
-
-//listen to the server.
-const port = process.env.PORT||10000;
-app.listen(port,console.log(`SERVER IS UP AND RUNNING ON PORT ${port}`));
+// Listen to the server
+const port = process.env.PORT || 10000;
+app.listen(port, console.log(`SERVER IS UP AND RUNNING ON PORT ${port}`));
