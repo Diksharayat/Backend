@@ -1,3 +1,4 @@
+const Orders = require("../models/Orders");
 const Cart=require("../models/cartModel");
 const Product = require("../models/products");
 
@@ -29,6 +30,44 @@ const productsController=async(req,res)=>{
   res.send(products);
   
 }
+
+
+const placeOrderControlller = (req, res) => {
+  // Validate and extract data from req.body
+  const { name, email, address, items, total } = req.body;
+
+  // Find or create user based on email
+  Orders.findOne({ email }, (err, user) => {
+    if (err) {
+      return res.status(500).json({ error: "Internal server error." });
+    }
+    
+    if (!user) {
+      // User not found, create a new user
+      user = new Orders({
+        name,
+        email,
+        address,
+        orders: []
+      });
+    }
+
+    // Add the new order to user's orders array
+    user.orders.push({
+      items,
+      total
+    });
+
+    // Save the updated user details
+    user.save((err) => {
+      if (err) {
+        return res.status(500).json({ error: "Failed to save user details." });
+      }
+      // Return success response
+      return res.status(200).json({ message: "Order placed successfully." });
+    });
+  });
+};
 
 
 const get_cart_items = async (req, res) => {
@@ -117,5 +156,6 @@ module.exports={
   increment_quantity,
   decrement_quantity,
   delete_item,
-  productsController
+  productsController,
+  placeOrderControlller
 }
