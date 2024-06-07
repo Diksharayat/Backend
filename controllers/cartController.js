@@ -31,10 +31,14 @@ const productsController=async(req,res)=>{
   
 }
 
-
 const placeOrderControlller = (req, res) => {
   // Validate and extract data from req.body
   const { name, email, address, items, total } = req.body;
+
+  // Check if name, email, and address fields are empty
+  if (!name || !email || !address) {
+    return res.status(400).json({ error: "Please fill all the required fields." });
+  }
 
   // Find or create user based on email
   Orders.findOne({ email }, (err, user) => {
