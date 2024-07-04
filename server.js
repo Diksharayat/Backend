@@ -12,7 +12,7 @@ const app=express();
 
 // Use CORS middleware
 app.use(cors());
-
+     
 // Middleware
 app.use(bodyParser.json());
 app.get('/', (req, res) => {
