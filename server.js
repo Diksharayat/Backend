@@ -1,7 +1,7 @@
 const express =require('express');
 const cart_route = require('./routes/cartRoute');
 const bodyParser =require("body-parser");
-// const cors= require("cors");
+const cors= require("cors");
 const user_route = require('./routes/userRoute');
 require("./config/dbConnect");
 const app=express();
@@ -25,7 +25,6 @@ app.use(express.json())
 //routes
 
 app.use("/api",cart_route);
-app.use("/api",user_route);
 
 //cart route
 
