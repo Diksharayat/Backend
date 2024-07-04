@@ -8,16 +8,10 @@ const app=express();
 
 
 
-// const corsOptions ={
-//   origin:'https://frontend-pink-eight.vercel.app/', 
-//   credentials:true,            
-//   optionSuccessStatus:200
-// }
-// app.use(cors(corsOptions));
 
 
-//middlewares
-app.use(cors())
+// Use CORS middleware
+app.use(cors());
 
 // Middleware
 app.use(bodyParser.json());
