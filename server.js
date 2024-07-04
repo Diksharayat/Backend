@@ -1,7 +1,7 @@
 const express =require('express');
 const cart_route = require('./routes/cartRoute');
 const bodyParser =require("body-parser");
-const cors= require("cors");
+// const cors= require("cors");
 const user_route = require('./routes/userRoute');
 require("./config/dbConnect");
 const app=express();
@@ -11,7 +11,7 @@ const app=express();
 
 
 // Use CORS middleware
-app.use(cors());
+// app.use(cors());
      
 // Middleware
 app.use(bodyParser.json());
