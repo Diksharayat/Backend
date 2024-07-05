@@ -11,7 +11,7 @@ const app=express();
 
 
 // Use CORS middleware
-// app.use(cors());
+app.use(cors());
      
 // Middleware
 app.use(bodyParser.json());
@@ -25,6 +25,7 @@ app.use(express.json())
 //routes
 
 app.use("/api",cart_route);
+app.use("/api",user_route);
 
 //cart route
 

@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcrypt");
-
 var dotenv = require('dotenv');
+const User = require('../models/User');
 dotenv.config()
 
 
@@ -58,49 +58,49 @@ const registerUserController = async (req, res) => {
 
 
 
-// const loginUserController = async (req, res) => {
-//   const { email, password } = req.body;
+const loginUserController = async (req, res) => {
+  const { email, password } = req.body;
 
-//   try {
-//     if (!email || !password) {
-//       return res.status(401).json({ message: "Email and password are required" });
-//     }
+  try {
+    if (!email || !password) {
+      return res.status(401).json({ message: "Email and password are required" });
+    }
 
-//     // Check if the email exists
-//     const userFound = await User.findOne({ email });
-//     if (!userFound) {
-//       return res.status(401).json({ message: "Check email and password" });
-//     }
+    // Check if the email exists
+    const userFound = await User.findOne({ email });
+    if (!userFound) {
+      return res.status(401).json({ message: "Check email and password" });
+    }
 
-//     // Check if the password matches
-//     const isPasswordMatch = await bcrypt.compare(password, userFound.password);
-//     if (!isPasswordMatch) {
-//       return res.status(401).json({ message: "Check Password" });
-//     }
+    // Check if the password matches
+    const isPasswordMatch = await bcrypt.compare(password, userFound.password);
+    if (!isPasswordMatch) {
+      return res.status(401).json({ message: "Check Password" });
+    }
 
-//     // If email and password are correct, generate JWT token
-//     const token = jwt.sign(
-//       { userId: userFound._id, email: userFound.email }, // Payload
-//       process.env.JWT_SECRET, // Secret key from environment variables
-//       { expiresIn: '1h' } // Expiration time (optional)
-//     );
+    // If email and password are correct, generate JWT token
+    const token = jwt.sign(
+      { userId: userFound._id, email: userFound.email }, 
+      process.env.JWT_SECRET, 
+      { expiresIn: '1h' } 
+    );
 
-//     res.json({
-//       status: "success",
-//       message: "login successful",
-//       token: token // Send the token in response
-//     });
+    res.json({
+      status: "success",
+      message: "login successful",
+      token: token 
+    });
 
-//   } catch (error) {
-//     console.error("Error during user login:", error);
-//     res.status(500).json({ message: "Login failed" });
-//   }
-// };
+  } catch (error) {
+    console.error("Error during user login:", error);
+    res.status(500).json({ message: "Login failed" });
+  }
+};
 
-// module.exports = loginUserController;
+
 
 
 module.exports={
   registerUserController,
-  // loginUserController
+  loginUserController
 }
