@@ -66,19 +66,19 @@ const loginUserController = async (req, res) => {
       return res.status(401).json({ message: "Email and password are required" });
     }
 
-    // Check if the email exists
+    
     const userFound = await User.findOne({ email });
     if (!userFound) {
       return res.status(401).json({ message: "Check email and password" });
     }
 
-    // Check if the password matches
+  
     const isPasswordMatch = await bcrypt.compare(password, userFound.password);
     if (!isPasswordMatch) {
       return res.status(401).json({ message: "Check Password" });
     }
 
-    // If email and password are correct, generate JWT token
+   
     const token = jwt.sign(
       { userId: userFound._id, email: userFound.email }, 
       process.env.JWT_SECRET, 

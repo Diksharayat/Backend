@@ -17,7 +17,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.get('/', (req, res) => {
   console.log(req.useragent)
-  res.send('Hey this is my API running 🥳')
+  res.send('Hey this is my API running test 🥳')
 })
 
 
