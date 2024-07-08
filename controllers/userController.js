@@ -66,29 +66,34 @@ const loginUserController = async (req, res) => {
       return res.status(401).json({ message: "Email and password are required" });
     }
 
-    
+    // Find user by email
     const userFound = await User.findOne({ email });
+
+    // If user not found, return error
     if (!userFound) {
       return res.status(401).json({ message: "Check email and password" });
     }
 
-  
+    // Check if password matches
     const isPasswordMatch = await bcrypt.compare(password, userFound.password);
     if (!isPasswordMatch) {
       return res.status(401).json({ message: "Check Password" });
     }
 
-   
+    // If password matches, generate JWT token
     const token = jwt.sign(
-      { userId: userFound._id, email: userFound.email }, 
-      process.env.JWT_SECRET, 
-      { expiresIn: '1h' } 
+      { userId: userFound._id, email: userFound.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
     );
 
+    // Respond with success message, token, and additional user data
     res.json({
       status: "success",
       message: "login successful",
-      token: token 
+      token: token,
+      contact: userFound.contact, // Include contact information
+      uname: userFound.uname // Include username
     });
 
   } catch (error) {
@@ -100,7 +105,10 @@ const loginUserController = async (req, res) => {
 
 
 
+
+
 module.exports={
   registerUserController,
-  loginUserController
+  loginUserController,
+ 
 }
