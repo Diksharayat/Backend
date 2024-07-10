@@ -30,64 +30,85 @@ const productsController=async(req,res)=>{
   
 }
 
-const placeOrderControlller = (req, res) => {
-  
-  const { name, email, address, items, total } = req.body;
+const placeOrderController = (req, res) => {
+  const { uname, email, address, items, total } = req.body;
 
   
-  if (!name || !email || !address) {
-    return res.status(400).json({ error: "Please fill all the required fields." });
+  const loggedInUserId = req?.body?.userId; 
+  
+ 
+  if (!loggedInUserId || !email || !items || !total) {
+    return res.status(400).json({ error: "Please provide userId, email, items, and total." });
   }
 
- 
+  
   Orders.findOne({ email }, (err, user) => {
     if (err) {
       return res.status(500).json({ error: "Internal server error." });
     }
-    
+
     if (!user) {
+     
       user = new Orders({
-        name,
-        email,
-        address,
+        uname: uname || '',
+        userId: loggedInUserId,
+        email: email,
+        address: address || '',
         orders: []
       });
     }
 
+   
     user.orders.push({
       items,
-      total
+      total,
     });
 
-    user.save((err) => {
+   
+    user.save((err, savedUser) => {
       if (err) {
         return res.status(500).json({ error: "Failed to save user details." });
       }
-      // Return success response
-      return res.status(200).json({ message: "Order placed successfully." });
+    
+      return res.status(200).json({
+        userId: savedUser.userId,
+        uname: savedUser.uname,
+        email: savedUser.email,
+        address: savedUser.address,
+        orders: savedUser.orders
+      });
     });
   });
 };
 
 
-const get_cart_items = async (req, res) => {
-  try {
- 
-    const cartItems = await Cart.find();
 
- 
-    res.status(200).json({ success: true, message: "Cart items retrieved successfully", data: cartItems });
-  } catch (error) {
-    console.error("Error fetching cart items:", error);
-    res.status(500).json({ success: false, message: error.message });
-  }
+
+
+const getOrdersByUserIdController = (req, res) => {
+  const { userId } = req.params;
+
+  Orders.find({ userId })
+    .then(orders => {
+      if (!orders || orders.length === 0) {
+        return res.status(404).json({ error: "No orders found for this user." });
+      }
+      res.status(200).json({ orders });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: "Internal server error." });
+    });
 };
+
+
+
 
 
 
 module.exports={
   add_to_cart,
-  get_cart_items,
   productsController,
-  placeOrderControlller
+  placeOrderController,
+  getOrdersByUserIdController
 }
