@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
 var dotenv = require('dotenv');
 const User = require('../models/User');
+const Contact = require('../models/contact');
 dotenv.config()
 
 
@@ -66,34 +67,33 @@ const loginUserController = async (req, res) => {
       return res.status(401).json({ message: "Email and password are required" });
     }
 
-    // Find user by email
     const userFound = await User.findOne({ email });
 
-    // If user not found, return error
     if (!userFound) {
       return res.status(401).json({ message: "Check email and password" });
     }
 
-    // Check if password matches
+   
     const isPasswordMatch = await bcrypt.compare(password, userFound.password);
     if (!isPasswordMatch) {
       return res.status(401).json({ message: "Check Password" });
     }
 
-    // If password matches, generate JWT token
     const token = jwt.sign(
-      { userId: userFound._id, email: userFound.email },
+      { userId: userFound._id, email: userFound.email, contact: userFound.contact, 
+        uname: userFound.uname  },
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
 
-    // Respond with success message, token, and additional user data
+  
     res.json({
       status: "success",
       message: "login successful",
       token: token,
-      contact: userFound.contact, // Include contact information
-      uname: userFound.uname // Include username
+      userId: userFound._id,
+      contact: userFound.contact, 
+      uname: userFound.uname 
     });
 
   } catch (error) {
@@ -104,11 +104,155 @@ const loginUserController = async (req, res) => {
 
 
 
+const updateProfileDetailsController = async (req, res) => {
+  const { email } = req.body; // Assuming email is passed in the request body
+  const { firstName, lastName, birthday, gender, phone, address, city, state, zip } = req.body;
+
+  try {
+    // Find the user by email
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Update user profile details
+    user.firstName = firstName || user.firstName;
+    user.lastName = lastName || user.lastName;
+    user.birthday = birthday || user.birthday;
+    user.gender = gender || user.gender;
+    user.phone = phone || user.phone;
+    user.address = address || user.address;
+    user.city = city || user.city;
+    user.state = state || user.state;
+    user.zip = zip || user.zip;
+
+    // Save updated user document
+    const updatedUser = await user.save();
+
+    // Return success response with updated user details
+    res.json({
+      status: "success",
+      message: "Profile details updated",
+      user: {
+        id: updatedUser._id,
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
+        birthday: updatedUser.birthday,
+        gender: updatedUser.gender,
+        phone: updatedUser.phone,
+        address: updatedUser.address,
+        city: updatedUser.city,
+        state: updatedUser.state,
+        zip: updatedUser.zip,
+      },
+    });
+
+  } catch (error) {
+    console.error("Error updating profile details:", error);
+    res.status(500).json({ message: "Failed to update profile details" });
+  }
+};
+
+
+
+
+const getUserByIdController = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // Find user by userId
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+  
+    res.json({
+      status: "success",
+      user: {
+        id: user._id,
+        uname: user.uname,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        birthday: user.birthday,
+        gender: user.gender,
+        contact: user.contact,
+        address: user.address,
+        city: user.city,
+        state: user.state,
+        zip: user.zip
+      }
+    });
+
+  } catch (error) {
+    console.error("Error fetching user details:", error);
+    res.status(500).json({ message: "Failed to fetch user details" });
+  }
+};
+
+
+
+
+
+
+const contactFormController = async (req, res) => {
+  const {
+    firstName,
+    lastName,
+    email,
+    contact,
+    tastedDishes,
+    otherTastes,
+    request
+  } = req.body;
+
+  try {
+   
+    const contacts = await Contact.create({
+      firstName,
+      lastName,
+      email,
+      contact,
+      tastedDishes,
+      otherTastes,
+      request
+    });
+
+    res.json({
+      status: "success",
+      message: "Contact form submitted successfully",
+      details: {
+        firstName: contacts.firstName,
+        lastName: contacts.lastName,
+        email: contacts.email,
+        contact: contacts.phone,
+        tastedDishes: contacts.tastedDishes,
+        otherTastes: contacts.otherTastes,
+        request: contacts.request
+      }
+    });
+
+  } catch (error) {
+    console.error("Error submitting contact form:", error);
+    res.status(500).json({ message: "Failed to submit contact form" });
+  }
+};
+
+
+
+
 
 
 
 module.exports={
   registerUserController,
   loginUserController,
+  contactFormController,
+  updateProfileDetailsController,
+  getUserByIdController
+ 
  
 }
