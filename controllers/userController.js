@@ -105,18 +105,18 @@ const loginUserController = async (req, res) => {
 
 
 const updateProfileDetailsController = async (req, res) => {
-  const { email } = req.body; // Assuming email is passed in the request body
+  const { email } = req.body; 
   const { firstName, lastName, birthday, gender, phone, address, city, state, zip } = req.body;
 
   try {
-    // Find the user by email
+    
     const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Update user profile details
+  
     user.firstName = firstName || user.firstName;
     user.lastName = lastName || user.lastName;
     user.birthday = birthday || user.birthday;
@@ -127,10 +127,10 @@ const updateProfileDetailsController = async (req, res) => {
     user.state = state || user.state;
     user.zip = zip || user.zip;
 
-    // Save updated user document
+   
     const updatedUser = await user.save();
 
-    // Return success response with updated user details
+  
     res.json({
       status: "success",
       message: "Profile details updated",
@@ -161,13 +161,13 @@ const getUserByIdController = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    // Find user by userId
+  
     const user = await User.findById(userId);
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
+  
   
     res.json({
       status: "success",
@@ -185,8 +185,9 @@ const getUserByIdController = async (req, res) => {
         state: user.state,
         zip: user.zip
       }
+     
     });
-
+    
   } catch (error) {
     console.error("Error fetching user details:", error);
     res.status(500).json({ message: "Failed to fetch user details" });

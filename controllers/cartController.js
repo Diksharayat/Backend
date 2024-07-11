@@ -33,10 +33,8 @@ const productsController=async(req,res)=>{
 const placeOrderController = (req, res) => {
   const { uname, email, address, items, total } = req.body;
 
-  
   const loggedInUserId = req?.body?.userId; 
   
- 
   if (!loggedInUserId || !email || !items || !total) {
     return res.status(400).json({ error: "Please provide userId, email, items, and total." });
   }
@@ -84,24 +82,22 @@ const placeOrderController = (req, res) => {
 
 
 
+const getOrdersByUserIdController = async(req, res) => {
+  const userId = req.params.userId;
+  try {
+  
+    const orders = await Orders.find({ userId: userId });
 
-const getOrdersByUserIdController = (req, res) => {
-  const { userId } = req.params;
+    if (!orders || orders.length === 0) {
+      return res.status(404).json({ message: 'Orders not found' });
+    }
 
-  Orders.find({ userId })
-    .then(orders => {
-      if (!orders || orders.length === 0) {
-        return res.status(404).json({ error: "No orders found for this user." });
-      }
-      res.status(200).json({ orders });
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: "Internal server error." });
-    });
+    res.status(200).json({ orders });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
 };
-
-
 
 
 

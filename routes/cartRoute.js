@@ -4,6 +4,6 @@ const cart_route = express.Router();
 
 cart_route.post("/placeOrder",placeOrderController);
 cart_route.get("/products",productsController);
-cart_route.get('/orders/:email', getOrdersByUserIdController);
+cart_route.get('/orders/:userId', getOrdersByUserIdController);
 
  module.exports=cart_route;
