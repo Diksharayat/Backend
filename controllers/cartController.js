@@ -32,21 +32,18 @@ const productsController=async(req,res)=>{
 
 const placeOrderController = (req, res) => {
   const { uname, email, address, items, total } = req.body;
-
-  const loggedInUserId = req?.body?.userId; 
+  const loggedInUserId = req?.body?.userId;
   
   if (!loggedInUserId || !email || !items || !total) {
     return res.status(400).json({ error: "Please provide userId, email, items, and total." });
   }
 
-  
   Orders.findOne({ email }, (err, user) => {
     if (err) {
       return res.status(500).json({ error: "Internal server error." });
     }
 
     if (!user) {
-     
       user = new Orders({
         uname: uname || '',
         userId: loggedInUserId,
@@ -56,13 +53,12 @@ const placeOrderController = (req, res) => {
       });
     }
 
-   
     user.orders.push({
       items,
       total,
+      date: new Date()  // Add the current date/time to the order
     });
 
-   
     user.save((err, savedUser) => {
       if (err) {
         return res.status(500).json({ error: "Failed to save user details." });
@@ -78,6 +74,7 @@ const placeOrderController = (req, res) => {
     });
   });
 };
+
 
 
 

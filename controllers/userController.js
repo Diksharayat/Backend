@@ -68,7 +68,6 @@ const loginUserController = async (req, res) => {
     }
 
     const userFound = await User.findOne({ email });
-
     if (!userFound) {
       return res.status(401).json({ message: "Check email and password" });
     }
