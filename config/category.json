@@ -1,0 +1,266 @@
+{
+  "categories": [
+    {
+      "_id": "669654c6d602104b2280e0f7",
+      "title": "BREAKFAST",
+      "image": "https://i.ibb.co/C6Cc7JK/fish.png",
+      "dishes": [
+        {
+          "_id": "66601607b904ad100a52c8e1",
+          "id": 1,
+          "name": "Hotcakes and Sausage",
+          "description": "Bacon, Egg & Cheese Biscuit",
+          "price": "$19.99",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGc3E15CpfLEhAIf…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8e2",
+          "id": 2,
+          "name": "Egg McMuffin®",
+          "description": "Egg McMuffin®",
+          "price": "$29.99",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyYUdbeEi8T-Rbsj…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8e3",
+          "id": 3,
+          "name": "Fruit & Maple Oatmeal",
+          "description": "Fruit & Maple Oatmeal",
+          "price": "$39.99",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxIQEBIQEhA…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8e4",
+          "id": 4,
+          "name": "Sausage Burrito Meal",
+          "description": "Sausage Burrito Meal",
+          "price": "$49.99",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxIQEhIRExI…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8e5",
+          "id": 5,
+          "name": "Sausage Biscuit with Egg Meal 5",
+          "description": "Sausage Biscuit with Egg Meal",
+          "price": "$59.99",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAPEBIOEBA…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8e6",
+          "id": 6,
+          "name": "Sausage McGriddles® Meal",
+          "description": "Sausage McGriddles® Meal",
+          "price": "$69.99",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxIQEBISEhE…"
+        }
+      ]
+    },
+    {
+      "_id": "669654c6d602104b2280e0f8",
+      "title": "BURGERS",
+      "image": "https://i.ibb.co/rM6H7Rz/burgers.png",
+      "dishes": [
+        {
+          "_id": "66601607b904ad100a52c8e7",
+          "id": 7,
+          "name": "McAloo Tikki",
+          "description": "McAloo Tikki",
+          "price": "$19.99",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT79lq4bRRhf2-6JD…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8e8",
+          "id": 8,
+          "name": "McSpicy Paneer Burger",
+          "description": "McSpicy Paneer Burger",
+          "price": "$29.99",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpMOgBbB5jtZUfp3…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8e9",
+          "id": 9,
+          "name": "Veg Maharaja Mac Burger",
+          "description": "Veg Maharaja Mac Burger",
+          "price": "$39.99",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5ujpWKB9kaG-R5s…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8ea",
+          "id": 10,
+          "name": "Quarter Pounder®* with Cheese Bacon",
+          "description": "Quarter Pounder®* with Cheese Bacon",
+          "price": "$49.99",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTEhM…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8eb",
+          "id": 11,
+          "name": "Cheeseburger",
+          "description": "Cheeseburger",
+          "price": "$59.99",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxITEhUTExM…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8ec",
+          "id": 12,
+          "name": "Double Cheese burger",
+          "description": "Double Cheese burger",
+          "price": "$69.99",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxETEhUSEhI…"
+        }
+      ]
+    },
+    {
+      "_id": "669654c6d602104b2280e0fb",
+      "title": "FRIES & SIDES",
+      "image": "https://i.ibb.co/8rdYzzx/frr.png",
+      "dishes": [
+        {
+          "_id": "66601607b904ad100a52c8ed",
+          "id": 13,
+          "name": "World Famous Fries®",
+          "description": "World Famous Fries®",
+          "price": "$19.99",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxATEhUSEBI…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8ee",
+          "id": 14,
+          "name": "Tangy Barbeque Sauce",
+          "description": "Tangy Barbeque Sauce",
+          "price": "$29.99",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhISEhI…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8ef",
+          "id": 15,
+          "name": "Honey Mustard Sauce",
+          "description": "Honey Mustard Sauce",
+          "price": "$39.99",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8SDhIQEBA…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8f0",
+          "id": 16,
+          "name": "Mayonnaise Packet",
+          "description": "Mayonnaise Packet",
+          "price": "$49.99",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxESDxUTEBI…"
+        }
+      ]
+    },
+    {
+      "_id": "669654c6d602104b2280e0fc",
+      "title": "HAPPY MEAL®",
+      "image": "https://i.ibb.co/10FTCJt/happy.png",
+      "dishes": [
+        {
+          "_id": "66601607b904ad100a52c8f1",
+          "id": 17,
+          "name": "Hamburger Happy Meal®",
+          "description": "Hamburger Happy Meal®",
+          "price": "$19.99",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxQHEBISEhA…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8f2",
+          "id": 18,
+          "name": "6 Piece Chicken McNuggets® Happy Meal®",
+          "description": "6 Piece Chicken McNuggets® Happy Meal®",
+          "price": "$29.99",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_qjMZJeIasGhFRc…"
+        },
+        {
+          "_id": "66601607b904ad100a52c8f3",
+          "id": 19,
+          "name": "4 Piece Chicken McNuggets® Happy Meal®",
+          "description": "4 Piece Chicken McNuggets® Happy Meal®",
+          "price": "$39.99",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxITERIQExI…"
+        }
+      ]
+    },
+    {
+  "_id": "669654c6d602104b2280e0fa",
+  "title": "McNUGGETS® & MEALS",
+  "image": "https://i.ibb.co/YpJhdzN/meals.png",
+  "dishes": [
+    {
+      "_id": "66601607b904ad100a52c8f4",
+      "id": 20,
+      "name": "Chicken McNuggets®",
+      "description": "Chicken McNuggets®",
+      "price": "$19.99",
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxIREBUSEBA…"
+    },
+    {
+      "_id": "66601607b904ad100a52c8f5",
+      "id": 21,
+      "name": "10 Piece Chicken McNuggets®",
+      "description": "10 Piece Chicken McNuggets®",
+      "price": "$29.99",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7f2CKInjR_K4vQ2…"
+    }
+  ]
+},
+{
+  "_id": "669654c6d602104b2280e0f9",
+  "title": "SANDWICHES",
+  "image": "https://i.ibb.co/C6Cc7JK/fish.png",
+  "dishes": [
+    {
+      "_id": "66601607b904ad100a52c8f6",
+      "id": 22,
+      "name": "Bacon Cajun Ranch McCrispy™",
+      "description": "Bacon Cajun Ranch McCrispy™",
+      "price": "$19.99",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT79lq4bRRhf2-6JD…"
+    },
+    {
+      "_id": "66601607b904ad100a52c8f7",
+      "id": 23,
+      "name": "McChicken®",
+      "description": "McChicken®",
+      "price": "$29.99",
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUSExI…"
+    },
+    {
+      "_id": "66601607b904ad100a52c8f8",
+      "id": 24,
+      "name": "Filet-O-Fish®",
+      "description": "Filet-O-Fish®",
+      "price": "$39.99",
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISERUTEhA…"
+    },
+    {
+      "_id": "66601607b904ad100a52c8f9",
+      "id": 25,
+      "name": "Spicy Deluxe McCrispy™",
+      "description": "Spicy Deluxe McCrispy™",
+      "price": "$49.99",
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxITERURExI…"
+    },
+    {
+      "_id": "66601607b904ad100a52c8fa",
+      "id": 26,
+      "name": "Spicy McCrispy™",
+      "description": "Spicy McCrispy™",
+      "price": "$59.99",
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISERUSEhA…"
+    },
+    {
+      "_id": "66601607b904ad100a52c8fb",
+      "id": 27,
+      "name": "Bacon Cajun Ranch Deluxe McCrispy™",
+      "description": "Bacon Cajun Ranch Deluxe McCrispy™",
+      "price": "$69.99",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp2RMdKKg3TJJcTv…"
+    }
+  ]
+}
+
+
+  
+  ]
+}
+

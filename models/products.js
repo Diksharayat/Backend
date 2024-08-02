@@ -11,3 +11,4 @@ const productSchema = new mongoose.Schema({
 const Product = mongoose.model('foods', productSchema);
 
 module.exports = Product;
+

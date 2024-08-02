@@ -7,7 +7,7 @@ const UserOrderSchema = new mongoose.Schema({
   userId: String,
   
   orders: [{
-    // orderId: { type: String, required: true }, // Unique identifier for each sub-order
+   
     items: [{ 
       name: String,
       quantity: Number,
