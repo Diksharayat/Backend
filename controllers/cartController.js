@@ -21,6 +21,7 @@ const add_to_cart= async(req,res)=>{
   } catch (error) {
     console.error("Error adding item:", error);
     res.status(500).json({ success:false,message: error.message });
+    res.status(500).json({ success:false,message: error.message });
   }
 
 }
@@ -252,6 +253,16 @@ const getOrdersByUserIdController = async(req, res) => {
 };
 
 
+const getOrdersController=async(req,res)=>{
+  try {
+    const orders = await Orders.find(); 
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+
 
 
 module.exports={
@@ -264,5 +275,6 @@ module.exports={
   editCategoryController,
   editDishController,
   deleteDishController,
-  getOrdersByUserIdController
+  getOrdersByUserIdController,
+  getOrdersController
 }

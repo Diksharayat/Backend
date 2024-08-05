@@ -1,5 +1,5 @@
 const express= require("express");
-const { productsController, placeOrderController, getOrdersByUserIdController, categoryController, dishesController, deleteCategoryController, deleteDishController, editCategoryController, editDishController } = require("../controllers/cartController");
+const { productsController, placeOrderController, getOrdersByUserIdController, categoryController, dishesController, deleteCategoryController, deleteDishController, editCategoryController, editDishController, getOrdersController } = require("../controllers/cartController");
 const cart_route = express.Router();
 
 cart_route.post("/placeOrder",placeOrderController);
@@ -12,5 +12,6 @@ cart_route.put("/categories/:categoryId/dishes/:dishId",editDishController);
 
 cart_route.delete('/dish/:categoryId/:dishId', deleteDishController); 
 cart_route.get('/orders/:userId', getOrdersByUserIdController);
+cart_route.get('/orders', getOrdersController);
 
- module.exports=cart_route;
+ module.exports=cart_route;''
