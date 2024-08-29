@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 var dotenv = require('dotenv');
 const User = require('../models/User');
 const Contact = require('../models/contact');
+const Admin = require('../models/admin');
 dotenv.config()
 
 
@@ -135,7 +136,7 @@ const updateProfileDetailsController = async (req, res) => {
       message: "Profile details updated",
       user: {
         id: updatedUser._id,
-        firstName: updatedUser.firstName,
+        firstName: updatedUser.firstName,       
         lastName: updatedUser.lastName,
         birthday: updatedUser.birthday,
         gender: updatedUser.gender,
@@ -242,6 +243,94 @@ const contactFormController = async (req, res) => {
 };
 
 
+// Set or update admin credentials
+const setAdminCredentialsController = async (req, res) => {
+  // Hardcoded admin credentials
+  const adminEmail = 'admin@gmail.com';  // Replace with your desired email
+  const adminPassword = 'admin123'; // Replace with your desired password
+
+  try {
+    // Check if an admin already exists with the hardcoded email
+    let admin = await Admin.findOne({ email: adminEmail });
+    
+    if (admin) {
+      // Update existing admin credentials
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(adminPassword, salt);
+      
+      admin.password = hashedPassword;
+      await admin.save();
+
+      res.json({
+        status: 'success',
+        message: 'Admin credentials updated successfully'
+      });
+    } else {
+      // Create a new admin with hardcoded credentials
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(adminPassword, salt);
+
+      admin = new Admin({
+        email: adminEmail,
+        password: hashedPassword
+      });
+
+      await admin.save();
+
+      res.json({
+        status: 'success',
+        message: 'Admin credentials set successfully'
+      });
+    }
+  } catch (error) {
+    console.error('Error setting admin credentials:', error);
+    res.status(500).json({ message: 'Failed to set admin credentials' });
+  }
+};
+
+
+
+// Admin login controller
+const adminLoginController = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Validate input
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Email and password are required' });
+    }
+
+    // Find admin with the provided email
+    const admin = await Admin.findOne({ email });
+    if (!admin) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    // Compare the provided password with the stored hashed password
+    const isPasswordMatch = await bcrypt.compare(password, admin.password);
+    if (!isPasswordMatch) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    // Generate a JWT token
+    const token = jwt.sign(
+      { adminId: admin._id, email: admin.email },
+      process.env.JWT_SECRET, // Ensure JWT_SECRET is defined in your environment
+      { expiresIn: '1h' }
+    );
+
+    res.json({
+      status: 'success',
+      message: 'Login successful',
+      token: token
+    });
+
+  } catch (error) {
+    console.error('Error during admin login:', error);
+    res.status(500).json({ message: 'Login failed' });
+  }
+};
+
 
 
 
@@ -252,7 +341,9 @@ module.exports={
   loginUserController,
   contactFormController,
   updateProfileDetailsController,
-  getUserByIdController
+  getUserByIdController,
+  setAdminCredentialsController,
+  adminLoginController
  
  
 }
